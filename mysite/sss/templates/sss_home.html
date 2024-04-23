@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p><a href="search">Search Customers</a>
+<p><a href="create">Create Customer</a>
+<p><a href="add_product">Add Product</a>
+
+<h3>Available Products</h3>
+
+<style>
+    .add-to-cart-btn {
+    margin-bottom: 20px;
+    margin-left: 20px;
+    }
+
+    .price {
+    margin-left: 40px;
+    }
+
+    .name {
+    margin-left: 10px;
+    font-size: 12pt;
+    }
+
+    .image {
+    margin-left: 7px;
+    }
+</style>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for product in products %}
+    <div class="col">
+        <div class="card h-100">
+            <img src="{{ product.image.url }}" class="card-img-top img-fluid image" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
+            <div class="card-body">
+                <h5 class="card-title name">{{ product.name }}</h5>
+                <p class="card-text price" >${{ product.price }}</p>
+                <button class="btn btn-primary add-to-cart-btn" >Add to Cart</button>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

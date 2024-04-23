@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4>Object Registrations</h4>
+    {% for message in messages %}
+        <i>{{ message }}</i>
+    {% endfor %}
+
+    <p>
+
+    <form method="get" action={{ redirect|safe }}>
+        <label>Wanna add more objects?
+            <button>Sure!</button>
+        </label>
+    </form>
+
+{% endblock %}
