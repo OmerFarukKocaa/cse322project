@@ -4,6 +4,9 @@
 <p><a href="search">Search Customers</a>
 <p><a href="create">Create Customer</a>
 <p><a href="add_product">Add Product</a>
+<p><a href="search_product">Search Product</a></p>
+<p><a href="create_order">Create Order</a></p>
+<p><a href="search_order">Search Order</a></p>
 
 <h3>Available Products</h3>
 
@@ -25,21 +28,28 @@
     .image {
     margin-left: 7px;
     }
+
+    .card {
+        margin-bottom: 20px;
+    }
 </style>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-    {% for product in products %}
-    <div class="col">
-        <div class="card h-100">
-            <img src="{{ product.image.url }}" class="card-img-top img-fluid image" alt="{{ product.name }}" style="height: 200px; object-fit: cover;">
-            <div class="card-body">
-                <h5 class="card-title name">{{ product.name }}</h5>
-                <p class="card-text price" >${{ product.price }}</p>
-                <button class="btn btn-primary add-to-cart-btn" >Add to Cart</button>
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for product in products %}
+        <div class="col">
+            <div class="card h-100">
+                <img src="{{ product.image.url }}" class="card-img-top img-fluid image" alt="{{ product.name }}"
+                     style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title name">{{ product.name }}</h5>
+                    <p class="card-text price">${{ product.price }}</p>
+                    <button class="btn btn-primary add-to-cart-btn">Add to Cart</button>
+                </div>
             </div>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 
 {% endblock %}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from sss.forms import CustomerForm, ProductForm
-from sss.models import Customer, Product
+from sss.forms import CustomerForm, ProductForm, CartItemForm, OrderForm
+from sss.models import Customer, Product, CartItem, OrderNew
 from django.http import HttpResponse
 
 
@@ -61,3 +61,48 @@ def add_product(request):
         form = ProductForm()
 
     return render(request, 'sss_product.html', {'form': form, 'redirect': '/sss/'})
+
+
+def create_order(request):
+    if request.method == 'POST':
+        form = OrderForm(request.POST)
+        if form.is_valid():
+            customer_name = form.cleaned_data['customer_name']
+            product_name = form.cleaned_data['product_name']
+            quantity = form.cleaned_data['quantity']
+            shipping_address = form.cleaned_data['shipping_address']
+            billing_address = form.cleaned_data['billing_address']
+            order = OrderNew(
+                customer_name=customer_name,
+                product_name=product_name,
+                quantity=quantity,
+                shipping_address=shipping_address,
+                billing_address=billing_address
+            )
+            order.save()
+            messages.success(request, f'Order for {order.product_name} by {order.customer_name} saved!')
+            return render(request, "model_saved.html", {"messages": messages.get_messages(request), 'redirect': '/sss'})
+        else:
+            messages.error(request, "Form is not valid!")
+    else:
+        form = OrderForm()
+
+    return render(request, 'create_order.html', {'form': form, 'redirect': '/sss/'})
+
+
+def get_order(request):
+    if request.GET:
+        customer_name_filter = request.GET.get('customer_name_filter', '')
+        orders = OrderNew.objects.filter(customer_name__icontains=customer_name_filter)
+        return render(request, "search_order.html", {"orders": orders})
+    else:
+        return render(request, "search_order.html")
+
+
+def get_product(request):
+    if request.GET:
+        name_filter = request.GET.get('name_filter', '')
+        products = Product.objects.filter(name__icontains=name_filter)
+        return render(request, "search_product.html", {"products": products})
+    else:
+        return render(request, "search_product.html")

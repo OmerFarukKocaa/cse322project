@@ -31,6 +31,17 @@ class Order(models.Model):
         return str(self.customer) + " @ " + str(self.shippingaddress)
 
 
+class OrderNew(models.Model):
+    customer_name = models.CharField(max_length=100)
+    product_name = models.CharField(max_length=100)
+    quantity = models.PositiveIntegerField(default=0)
+    shipping_address = models.CharField(max_length=100)
+    billing_address = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.customer_name) + " " + str(self.quantity) + " x " + str(self.product_name) + " @ " + str(self.shipping_address)
+
+
 class OrderPayment(models.Model):
     cardNumber = models.BigIntegerField()
     txnId = models.IntegerField()

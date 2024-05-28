@@ -14,11 +14,13 @@
 </header>
 <br/>
 <div class="container">
-    {% if cart_products %}
-    {% for product in cart_products %}
-    ${{ product.price }}
+    {% if cart_items %}
+      <ul>
+          {% for item in cart_items %}
+                <li>{{ item.quantity }} x {{ item.product.name }} - ${{ item.product.price * item.quantity }}</li>
+            {% endfor %}
+      </ul>
 
-    {% endfor %}
     <div align="right">
         <h3>Total: ${{ totals }}</h3>
         <a href="{% url 'checkout' %}" class="btn btn-success">Checkout</a>

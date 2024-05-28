@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Beautiful Site</title>
+    <title>Online Shopping Site</title>
 
     <style>
         /* Add a black background color to the top navigation */
@@ -33,6 +33,49 @@
             color: white;
         }
 
+        .dropdown  {
+            float: left;
+            overflow: hidden;
+            }
+
+        .dropdown .drop-btn {
+           font-size: 17px;
+           border: none;
+           outline: none;
+           color: black;
+           padding: 14px 16px;
+           background-color: inherit;
+           font-family: inherit;
+           margin: 0;
+           }
+
+        .dropdown-content a:hover {
+            background-color: antiquewhite;
+            color: black;
+            }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: whitesmoke;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            }
+
+        .dropdown-content a {
+            float: none;
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
         footer {
             background-color: cornsilk;
         }
@@ -48,12 +91,19 @@
 <div class="topnav">
     <a class="active" href="/">Home</a>
     <a href="/sss">Simple Shopping Site</a>
-    <a href="/cart">Cart</a>
+<!--    <div class="dropdown">-->
+<!--    <a href="/sss" class="drop-btn">Simple Shopping Site</a>-->
+<!--        <div class="dropdown-content">-->
+<!--            <a href="/categories">Categories</a>-->
+<!--        </div>-->
 
-</div>
+        <a href="/cart">Cart</a>
+
+    </div>
+
 
 {% block content %}
-    <h2>Build software for yourself</h2>
+    <h2>CSE 322 Simple Shopping Site</h2>
     <p>
         A great way to build software is to start out by solving your own problems.
     You’ll be the target audience and you’ll know what’s important and what’s not.
