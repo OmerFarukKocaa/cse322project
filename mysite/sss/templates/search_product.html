@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="get" action="{% url 'search_product' %}">
+        <label> Product Name (contains):
+            <input type="text" name="name_filter">
+        </label>
+        <button>Search</button>
+    </form>
+
+    {% if products %}
+        <h4> Here are the products matching your criteria: </h4>
+        <ul>
+            {% for product in products %}
+                <li> {{ product.name }} - ${{ product.price }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

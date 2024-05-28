@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>
+    <form method="get" action="{% url 'search_order' %}">
+        <label> Order Name (contains):
+            <input type="text" name="customer_name_filter">
+        </label>
+        <button>Search</button>
+    </form>
+
+    {% if orders %}
+        <h4> Here are the orders matching your criteria: </h4>
+        <ul>
+            {% for order in orders %}
+                <li> {{ order }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% endblock %}

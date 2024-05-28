@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h4>Create a New Order</h4>
+   <form method="post" action="{% url 'create_order' %}">
+     {% csrf_token %}
+       {{ form.as_table }}
+       <button>Submit</button>
+   </form>
+{% endblock %}
